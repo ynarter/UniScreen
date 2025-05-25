@@ -1,12 +1,10 @@
-# Screening Policy Optimization under Cost Constraints
+# Unified Screening for Multiple Diseases
 
-Welcome to the repository for **Screening Policy Optimization for Two Diseases**, a simulation and optimization framework for comparing **independent** and **unified** screening models under cost constraints.
-
-This project uses **Monte Carlo simulation**, **Bayesian inference**, and **convex optimization** to derive optimal screening policies for patients characterized by risk factors \(x_1, x_2\). Policies are evaluated based on **expected survival time gains** and **screening costs**.
+Welcome to the repository for **Unified Screening for Multiple Diseases**. This project uses **Monte Carlo simulation**, **Bayesian inference**, and **convex optimization** to derive optimal screening policies for patients characterized by risk factors \(x_1, x_2\). Policies are evaluated based on **expected survival time gains** and **screening costs**.
 
 ---
 
-## 🚀 Overview
+## Overview
 
 We model two types of screening strategies:
 
@@ -21,7 +19,7 @@ Each patient is represented by a 2D risk vector \(x \in [0,1]^2\), generated fro
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 - `independent_model.py` – Simulates separate screening for each disease and saves survival gains & costs.
 - `unified_model.py` – Simulates joint screening for both diseases.
@@ -30,22 +28,22 @@ Each patient is represented by a 2D risk vector \(x \in [0,1]^2\), generated fro
 
 ---
 
-## 🔧 Code Breakdown
+## Code Breakdown
 
 ### independent_model.py
 
 Simulates two diseases separately:
-- Uses **Bayesian updates** for disease detection.
+- Uses Bayesian updates for disease detection.
 - Computes expected survival under policy \(a = (a_1, a_2)\) where each \(a_i \in \{0, 1\}\).
 - Uses `jax.vmap` and `jax.jit` for performance.
-- Saves gains/costs to `comparison2/independent_data/`.
+- Saves gains/costs to `comparison/independent_data/`.
 
 ### unified_model.py
 
 Models disease interaction:
 - A single Bayesian update step covers both diseases.
 - Calculates gain/cost vectors for all \(a \in \{00, 10, 01, 11\}\).
-- Saves results to `comparison4/unified_data/`.
+- Saves results to `comparison/unified_data/`.
 
 ### optimization.py
 
