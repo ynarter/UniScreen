@@ -57,7 +57,7 @@ Performs policy optimization:
 
 ### plot_kappas.py
 
-Generates insightful plots:
+Generates plots:
 - Survival vs. cost trade-offs.
 - Decision boundaries \(\arg\max_a \kappa(a) = \text{gain} - \lambda \cdot \text{cost}\).
 - Delta-plots: \(\Delta\text{Gain}, \Delta\text{Cost}, \Delta\kappa\).
