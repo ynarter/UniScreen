@@ -29,13 +29,11 @@ def _simulate_singlekey(x, key, params):
     events_time = params['mean_event_times']  # Tn
     #events_time = jax.random.exponential(subkey, shape=(x.size,)) * events_time
     
-        # Assuming params['mean_event_times'] is a 1x2 array representing the mean for each disease
     #mean_event_times = params['mean_event_times']  # Shape (1, 2), e.g., [mean_disease1, mean_disease2]
 
     # Compute the scale as 1 / mean_event_times
     #scale = 1 / mean_event_times
 
-    # Generate events_time for two diseases using the exponential distribution
     events_time = events_time + 3 * jax.random.normal(subkey, shape=(x.size,))
     events_time = np.where(events, events_time, np.inf)
     #print("Event times:", events_time)
@@ -144,13 +142,13 @@ def simulate_batch(xs, key, params):
 ###
 
 params = dict()
-params['mean_death_time'] = 40 #T0- 10
-params['mean_event_times'] = np.array([30.1, 30.1]) #Tn's - lambda for exponential dist., 7-7
-params['sample_sizes'] = np.ones((1, 40)) #1,10
+params['mean_death_time'] = 40 #T0
+params['mean_event_times'] = np.array([30.1, 30.1]) #Tn means
+params['sample_sizes'] = np.ones((1, 40)) #1,40, assuming annual screening
 # params['sample_perrors'] = np.array([.2, .2])
 params['diagnosis_threshold'] = .95
-params['screening_costs'] = np.array([1, 1]) #screening costs ck, will be modified accordingly. 1-1
-params['sampling_freq'] = np.array([5., 5.]) #assume now as a sampling with fixed frequency. 
+params['screening_costs'] = np.array([1, 1]) #screening costs cn, will be modified accordingly. 1-1
+params['sampling_freq'] = np.array([5., 5.]) #assume a sampling with fixed frequency (for old implementation) 
 
 ###
 
